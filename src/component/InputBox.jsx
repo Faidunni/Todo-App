@@ -2,7 +2,10 @@ import React from "react";
 
 function InputBox({ isLight, addItem, description, setTodoText }) {
   return (
-    <div className={isLight ? "input-box" : "input-box-dark"}>
+    <form
+      className={isLight ? "input-box" : "input-box-dark"}
+      onSubmit={addItem}
+    >
       <div className="circle" onClick={addItem}></div>
       <input
         type="text"
@@ -11,7 +14,7 @@ function InputBox({ isLight, addItem, description, setTodoText }) {
         onChange={(e) => setTodoText(e.target.value)}
         className={isLight ? "input-light" : "input-dark"}
       />
-    </div>
+    </form>
   );
 }
 
