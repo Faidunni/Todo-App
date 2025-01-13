@@ -185,10 +185,17 @@ ul div {
   gap: 10px;
 }
 
-.sort-text p:hover {
+button:hover {
   color: hsl(236, 33%, 92%);
 }
 
+button {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: hsl(235, 19%, 35%);
+}
 @media screen and (max-width: 760px) {
   .form {
     width: 100%;

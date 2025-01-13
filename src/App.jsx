@@ -108,12 +108,24 @@ function Form({
 }
 
 function TodoInfo({ todo, onDelete, onToggle, clearToggle, numLeft, isLight }) {
+  //   filter Item based on a condition
+  const [sortedBy, setSortedBy] = useState("All");
+  let sortedTodo;
+
+  if (sortedBy === "All") {
+    sortedTodo = todo;
+  } else if (sortedBy === "Active") {
+    sortedTodo = todo.filter((todos) => !todos.isComplete);
+  } else if (sortedBy === "Completed") {
+    sortedTodo = todo.filter((todos) => todos.isComplete);
+  }
+
   if (todo.length === 0) {
     return null;
   }
   return (
     <div className={isLight ? "todo-text" : "todo-text-dark"}>
-      {todo.map((todoText) => (
+      {sortedTodo.map((todoText) => (
         <ul key={todoText.id} className="content">
           <div>
             <label className="checkbox-container">
@@ -149,12 +161,12 @@ function TodoInfo({ todo, onDelete, onToggle, clearToggle, numLeft, isLight }) {
         <p>{numLeft} items left</p>
 
         <div className="sort-text">
-          <p>All</p>
-          <p>Active</p>
-          <p>Completed</p>
+          <button onClick={() => setSortedBy("All")}>All</button>
+          <button onClick={() => setSortedBy("Active")}>Active</button>
+          <button onClick={() => setSortedBy("Completed")}>Completed</button>
         </div>
 
-        <p onClick={clearToggle}>Clear all</p>
+        <button onClick={clearToggle}>Clear all</button>
       </div>
     </div>
   );
